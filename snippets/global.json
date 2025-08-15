@@ -1,0 +1,38 @@
+{
+	"OTTO - Enterprise Command": {
+		"prefix": "entcomm",
+		"body": [
+			"export default function $1Command(commandBus: CommandBus) {",
+			"\tcommandBus.registerCommand<$3, $4>('$5', {",
+			"\t\texecute: async (command: Command<$3>) => {",
+			"\t\t\treturn $5(command.payload, command.meta);",
+			"\t\t},",
+			"\t\tschema: $3Z,",
+			"\t\tresponse: $4Z",
+			"\t});",
+			"}",
+			"",
+			"async function $5(payload: $3, meta: CommandMeta) {",
+			"$0",
+			"}"
+		],
+		"desc": "Enterprise Command Snippet"
+	},
+	"OTTO - Zod Schema": {
+		"prefix": "zodschema",
+		"body": [
+			"export const $1Z = z.object({",
+			"$0",
+			"}).describe('$2');",
+			"export type $1 = z.infer<typeof $1Z>;"
+		],
+		"desc": "A zod schema"
+	},
+	"OTTO - Enterprise Server API Entry": {
+		"prefix": "entservcomm",
+		"body": [
+			"$1: (payload: $2) => EnterpriseServerCommand<$2, $3>('$4', payload, serverAddressResolver(payload.enterpriseID)),"
+		],
+		"desc": "enterprise-server-api.ts entry"
+	}
+}
